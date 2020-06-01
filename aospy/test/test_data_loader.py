@@ -489,8 +489,8 @@ def test_data_name_gfdl_annual():
 
 
 def test_data_name_gfdl_monthly():
+    expected = 'atmos.200601-201112.temp.nc'
     for data_type in ['ts', 'inst']:
-        expected = 'atmos.200601-201112.temp.nc'
         result = io.data_name_gfdl('temp', 'atmos', data_type,
                                    'monthly', 2010, 'jja', 2000, 6)
         assert result == expected
@@ -513,8 +513,8 @@ def test_data_name_gfdl_monthly():
 
 
 def test_data_name_gfdl_daily():
+    expected = 'atmos.20060101-20111231.temp.nc'
     for data_type in ['ts', 'inst']:
-        expected = 'atmos.20060101-20111231.temp.nc'
         result = io.data_name_gfdl('temp', 'atmos', data_type,
                                    'daily', 2010, None, 2000, 6)
         assert result == expected
@@ -530,8 +530,8 @@ def test_data_name_gfdl_daily():
 
 
 def test_data_name_gfdl_hr():
+    expected = 'atmos.2006010100-2011123123.temp.nc'
     for data_type in ['ts', 'inst']:
-        expected = 'atmos.2006010100-2011123123.temp.nc'
         result = io.data_name_gfdl('temp', 'atmos', data_type,
                                    '3hr', 2010, None, 2000, 6)
         assert result == expected

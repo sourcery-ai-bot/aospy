@@ -174,5 +174,4 @@ def test_lon_sub(obj1, obj2, expected_val):
     assert obj1 - obj2 == expected_val
 
 
-if __name__ == '__main__':
-    pass
+pass

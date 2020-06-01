@@ -30,13 +30,10 @@ def _replace_pressure(arguments, dtype_in_vert):
     the dtype_in_vert."""
     arguments_out = []
     for arg in arguments:
-        if isinstance(arg, Var):
-            if arg.name == 'p':
-                arguments_out.append(_P_VARS[dtype_in_vert])
-            elif arg.name == 'dp':
-                arguments_out.append(_DP_VARS[dtype_in_vert])
-            else:
-                arguments_out.append(arg)
+        if isinstance(arg, Var) and arg.name == 'p':
+            arguments_out.append(_P_VARS[dtype_in_vert])
+        elif isinstance(arg, Var) and arg.name == 'dp':
+            arguments_out.append(_DP_VARS[dtype_in_vert])
         else:
             arguments_out.append(arg)
     return arguments_out
@@ -364,7 +361,7 @@ class Calc(object):
 
     def _full_to_yearly_ts(self, arr, dt):
         """Average the full timeseries within each year."""
-        time_defined = self.def_time and not ('av' in self.dtype_in_time)
+        time_defined = self.def_time and 'av' not in self.dtype_in_time
         if time_defined:
             arr = utils.times.yearly_average(arr, dt)
         return arr

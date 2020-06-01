@@ -128,7 +128,3 @@ example_proj = Proj(
     models=[example_model],
     regions=(globe, tropics)
 )
-
-
-if __name__ == '__main__':
-    pass

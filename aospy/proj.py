@@ -79,19 +79,9 @@ class Proj(object):
         self.direc_out = direc_out
         self.tar_direc_out = tar_direc_out
 
-        if models is None:
-            self.models = []
-        else:
-            self.models = models
-        if default_models is None:
-            self.default_models = []
-        else:
-            self.default_models = default_models
-        if regions is None:
-            self.regions = []
-        else:
-            self.regions = regions
-
+        self.models = [] if models is None else models
+        self.default_models = [] if default_models is None else default_models
+        self.regions = [] if regions is None else regions
         # Set the `proj` attribute of the children models.
         for model in self.models:
             setattr(model, 'proj', self)

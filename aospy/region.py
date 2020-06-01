@@ -254,14 +254,12 @@ class Region(object):
 
         """
         # TODO: is this still necessary?
-        if not lon_cyclic:
-            if self.west_bound > self.east_bound:
-                raise ValueError("Longitudes of data to be masked are "
-                                 "specified as non-cyclic, but Region's "
-                                 "definition requires wraparound longitudes.")
-        masked = data.where(self._make_mask(data, lon_str=lon_str,
-                                            lat_str=lat_str))
-        return masked
+        if not lon_cyclic and self.west_bound > self.east_bound:
+            raise ValueError("Longitudes of data to be masked are "
+                             "specified as non-cyclic, but Region's "
+                             "definition requires wraparound longitudes.")
+        return data.where(self._make_mask(data, lon_str=lon_str,
+                                                lat_str=lat_str))
 
     def ts(self, data, lon_cyclic=True, lon_str=LON_STR, lat_str=LAT_STR,
            land_mask_str=LAND_MASK_STR, sfc_area_str=SFC_AREA_STR):

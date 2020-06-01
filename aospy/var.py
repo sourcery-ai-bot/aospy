@@ -95,10 +95,7 @@ class Var(object):
         self.units = units
 
         if not description:
-            if self.func.__doc__ is None:
-                self.description = ''
-            else:
-                self.description = self.func.__doc__
+            self.description = '' if self.func.__doc__ is None else self.func.__doc__
         else:
             self.description = description
 

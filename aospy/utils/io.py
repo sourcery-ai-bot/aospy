@@ -127,10 +127,7 @@ def dmget(files_list):
     if isinstance(files_list, str):
         files_list = [files_list]
 
-    archive_files = []
-    for f in files_list:
-        if f.startswith('/archive'):
-            archive_files.append(f)
+    archive_files = [f for f in files_list if f.startswith('/archive')]
     try:
         subprocess.call(['dmget'] + archive_files)
     except OSError:

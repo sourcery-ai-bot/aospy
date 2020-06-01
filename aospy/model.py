@@ -201,11 +201,7 @@ class Model(object):
         self.runs = runs
         [setattr(run, 'parent', self) for run in self.runs]
 
-        if default_runs is None:
-            self.default_runs = []
-        else:
-            self.default_runs = default_runs
-
+        self.default_runs = [] if default_runs is None else default_runs
         self.grid_attrs = grid_attrs
 
         self._grid_data_is_set = False

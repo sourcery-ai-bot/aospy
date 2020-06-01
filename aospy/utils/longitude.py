@@ -30,10 +30,7 @@ def lon_to_0360(lon):
 
 
 def _lon_in_west_hem(lon):
-    if lon_to_0360(lon) >= 180:
-        return True
-    else:
-        return False
+    return lon_to_0360(lon) >= 180
 
 
 def lon_to_pm180(lon):
@@ -249,5 +246,4 @@ class Longitude(object):
         return Longitude(self.to_0360() - other.to_0360())
 
 
-if __name__ == '__main__':
-    pass
+pass

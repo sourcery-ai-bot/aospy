@@ -80,12 +80,20 @@ _CASES = (
                            _3D_DTYPE_IN_VERT.items(),
                            _3D_DTYPE_OUT_VERT.items()))
 )
-_CALC_TESTS = {}
-for ((date_type, date_range), (test_type, var),
-     (vert_in_label, vert_in), (vert_out_label, vert_out)) in _CASES:
-    _CALC_TESTS['{}-{}-{}-{}'.format(
-        date_type, test_type, vert_in_label, vert_out_label)] = (
-            date_range, var, vert_in, vert_out)
+_CALC_TESTS = {
+    '{}-{}-{}-{}'.format(date_type, test_type, vert_in_label, vert_out_label): (
+        date_range,
+        var,
+        vert_in,
+        vert_out,
+    )
+    for (
+        (date_type, date_range),
+        (test_type, var),
+        (vert_in_label, vert_in),
+        (vert_out_label, vert_out),
+    ) in _CASES
+}
 
 
 @pytest.fixture(params=_CALC_TESTS.values(), ids=list(_CALC_TESTS.keys()))

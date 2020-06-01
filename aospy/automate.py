@@ -80,7 +80,7 @@ def _merge_dicts(*dict_args):
 
 def _user_verify(prompt='Perform these computations? [y/n] '):
     """Prompt the user for verification."""
-    if not input(prompt).lower()[0] == 'y':
+    if input(prompt).lower()[0] != 'y':
         raise AospyException('Execution cancelled by user.')
 
 
@@ -97,8 +97,8 @@ def _get_all_objs_of_type(type_, parent):
     -------
     A list (possibly empty) of attributes from 'parent'
     """
-    return set([obj for obj in parent.__dict__.values()
-                if isinstance(obj, type_)])
+    return {obj for obj in parent.__dict__.values()
+                    if isinstance(obj, type_)}
 
 
 class CalcSuite(object):
@@ -479,7 +479,7 @@ def submit_mult_calcs(calc_suite_specs, exec_options=None):
 
     """
     if exec_options is None:
-        exec_options = dict()
+        exec_options = {}
     if exec_options.pop('prompt_verify', False):
         print(_print_suite_summary(calc_suite_specs))
         _user_verify()
